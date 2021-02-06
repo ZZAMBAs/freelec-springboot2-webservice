@@ -33,6 +33,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.projectlombok:lombok' // getter, setter, toString, 기본생성자 등을 애노테이션으로 자동 생성해주는 라이브러리.
 }
 
 test {
