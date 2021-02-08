@@ -33,7 +33,9 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'org.projectlombok:lombok' // getter, setter, toString, 기본생성자 등을 애노테이션으로 자동 생성해주는 라이브러리.
+    implementation 'org.projectlombok:lombok' // getter, setter, toString, 기본생성자 등을 애노테이션으로 자동 생성해주는 라이브러리. 코틀린 프로그래밍에서는 필요가 없다.(코틀린에선 자동 생성해줌)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Spring Data JPA 추상화 라이브러리. 스프링 부트에 맞춰 자동으로 JPA 관련 라이브러리 버전을 관리함.
+    implementation 'com.h2database:h2' // h2는 인메모리 관계형 데이터베이스이다. 앱 시작마다 초기화되어 테스트에 많이 사용.
 }
 
 test {
