@@ -18,7 +18,7 @@ public class HelloControllerTest {
     @Autowired // 스프링이 관리하는 빈(Bean)을 주입.
     private MockMvc mvc; // 웹 API 테스트 시 사용. 스프링 MVC 테스트 시작점. HTTP GET, POST 등에 대한 API 테스트를 할 수 있다.
 
-    @Test
+    @Test // 테스트 메소드 지정. https://galid1.tistory.com/476
     public void hello_return() throws Exception { // 이 코드 실행이 곧 테스트를 하는 것이다.
         String hello = "hello";
 

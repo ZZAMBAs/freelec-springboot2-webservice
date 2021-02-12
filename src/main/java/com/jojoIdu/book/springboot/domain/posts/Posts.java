@@ -1,5 +1,6 @@
 package com.jojoIdu.book.springboot.domain.posts;
 
+import com.jojoIdu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor // (롬복) 기본 생성자 자동 추가.
 @Entity // 테이블과 링크될 클래스임을 표시. JPA에선 Entity 애노테이션이 붙은 클래스를 수정함.
 // Entity 클래스에선 Setter를 만들지 않으며 set 해야 하는 상황엔 그에 맞는 메소드를 직접 만들어서 직접 변경함. 첫 초기화는 생성자로 수행.(여기선 빌더로 수행. 빌더의 장점 때문. 아래 빌더 패턴 참조.)
-public class Posts { // 실제 DB 테이블과 매칭될 클래스.
+public class Posts extends BaseTimeEntity { // 실제 DB 테이블과 매칭될 클래스.
     @Id // Primary Key를 지칭.
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK 생성 규칙을 나타냄. GenerationType.IDENTITY는 스프링부트 2.0에서 auto_increment를 칭함.
     private Long id;
@@ -29,4 +30,9 @@ public class Posts { // 실제 DB 테이블과 매칭될 클래스.
         this.content = content;
         this.author = author;
     } // 빌더 패턴 : https://readystory.tistory.com/121 , https://jdm.kr/blog/217
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }
