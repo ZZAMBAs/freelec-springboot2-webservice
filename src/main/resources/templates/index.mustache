@@ -28,7 +28,7 @@
             {{#posts}} <!-- #은 for문과 같다. (posts의 리스트를 가져와서 /posts 까지 반복수행) -->
                 <tr>
                     <td>{{id}}</td> <!-- { 2개는 위 posts의 필드명을 입력하면 그것을 가져온다. -->
-                    <td>{{title}}</td>
+                    <td><a href="posts/update/{{id}}">{{title}}</a></td> <!-- 클릭 시 수정. -->
                     <td>{{author}}</td>
                     <td>{{modifiedDate}}</td>
                 </tr>

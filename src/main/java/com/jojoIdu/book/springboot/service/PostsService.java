@@ -35,6 +35,14 @@ public class PostsService {
     // JPA의 영속성 컨텍스트로 update 쿼리를 날리는 구문을 쓰지 않아도 데이터를 가져온 상태에서 값을 변경하면 자동으로 업데이트 한다. (더티 체킹)
     // 더티 체킹: https://jojoIdu.tistory.com/415
 
+    @Transactional
+    public void delete(Long id){
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new
+                IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        postsRepository.delete(posts); // JpaRepository에서 지원하는 delete를 이용.
+    }
+
     public PostsResponseDto findById(Long id){
         Posts entity = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
