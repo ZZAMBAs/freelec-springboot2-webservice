@@ -37,6 +37,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Spring Data JPA 추상화 라이브러리. 스프링 부트에 맞춰 자동으로 JPA 관련 라이브러리 버전을 관리함.
     implementation 'com.h2database:h2' // h2는 인메모리 관계형 데이터베이스이다. 앱 시작마다 초기화되어 테스트에 많이 사용.
     implementation 'org.springframework.boot:spring-boot-starter-mustache' // 머스테치.
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // 소셜 기능 구현 의존성.
+    implementation 'org.springframework.session:spring-session-jdbc'
+    testImplementation 'org.springframework.security:spring-security-test' // 스프링 시큐리티 테스트 용
 }
 
 test {

@@ -1,9 +1,13 @@
 package com.jojoIdu.book.springboot.web;
 
+import com.jojoIdu.book.springboot.config.auth.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -12,13 +16,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class) // 테스트 시 JUnit 내장 실행자 외 다른 실행자를 실행시킴. 여기선 SpringRunner 스프링 실행자 사용.
-@WebMvcTest(controllers = HelloController.class) // Web 에 집중할 수 있는 애노테이션. @Controller, @ControllerAdvice 등을 사용 가능.
+@WebMvcTest(controllers = HelloController.class, // Web 에 집중할 수 있는 애노테이션. @Controller, @ControllerAdvice 등을 사용 가능.
+    excludeFilters = { // 쓸모 없는 클래스를 읽지 않도록 제한.
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
+    })
 public class HelloControllerTest {
 
     @Autowired // 스프링이 관리하는 빈(Bean)을 주입.
     private MockMvc mvc; // 웹 API 테스트 시 사용. 스프링 MVC 테스트 시작점. HTTP GET, POST 등에 대한 API 테스트를 할 수 있다.
 
     @Test // 테스트 메소드 지정. https://galid1.tistory.com/476
+    @WithMockUser(roles = "USER") // 가짜 사용자 추가.
     public void hello_return() throws Exception { // 이 코드 실행이 곧 테스트를 하는 것이다.
         String hello = "hello";
 
@@ -28,6 +36,7 @@ public class HelloControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "USER") // 가짜 사용자 추가.
     public void helloDto_return() throws Exception{
         String name = "hello";
         int amount = 1000;
